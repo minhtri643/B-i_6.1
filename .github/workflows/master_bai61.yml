@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: 'java21'
           distribution: 'microsoft'
 
       - name: Build with Maven
@@ -32,7 +32,7 @@ jobs:
           path: '${{ github.workspace }}/target/*.war'
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
@@ -49,9 +49,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6934BAD82A6E4ACD825DC68670CB50B4 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DC69B37513214738BC8D1361294C4335 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_40F20BC7DA56400291DBA5B7261F8F7E }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C68C090F94864668A4DFEB7A903F55AF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7DF87F79614D40788B623DA6D39C0EB4 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CEF2BE80D2B34A1DBED1951F98DBF143 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
